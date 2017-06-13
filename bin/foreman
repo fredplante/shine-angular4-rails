@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+VENDOR_PATH = File.expand_path('..', __dir__)
+Dir.chdir(VENDOR_PATH) do
+  begin
+    exec "foreman start -f Procfile.dev"
+  rescue Errno::ENOENT
+    $stderr.puts "Install foreman : gem install foreman"
+    exit 1
+  end
+end
